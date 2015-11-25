@@ -1,7 +1,7 @@
-Task default -Depends Compile, Test
+Task default -Depends Test
 
 task Compile {
-    msbuild kata-potter.sln /t:Rebuild /p:Configuration=Release /verbosity:quiet 
+    msbuild kata-potter.sln /t:Rebuild /p:Configuration=Release /verbosity:quiet
 
     if($lastexitcode -ne 0) {
       throw "Rebuild Failed!"
@@ -9,5 +9,5 @@ task Compile {
 }
 
 Task Test -Depends Compile {
-   & tools\NUnit\bin\nunit3-console.exe src\Kata.Potter.Tests\bin\Debug\Kata.Potter.Tests.dll
+    & tools\NUnit\bin\nunit3-console.exe src\Kata.Potter.Tests\bin\Release\Kata.Potter.Tests.dll
 }
